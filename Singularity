@@ -5,6 +5,26 @@ IncludeCmd: yes
 %post
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # this will install all necessary R packages and prepare the container
+  # dependencies for bbcRNA
+  R -e 'BiocManager::install("edgeR", version="3.9")'
+  R -e 'BiocManager::install("DESeq2", version="3.9")'
+  R -e 'BiocManager::install("SummarizedExperiment", version="3.9")'
+  R -e 'BiocManager::install("BiocStyle", version="3.9")'
+  R -e 'BiocManager::install("S4Vectors", version="3.9")'
+  R -e 'BiocManager::install("GenomicFeatures", version="3.9")'
+  R -e 'BiocManager::install("GenomicRanges", version="3.9")'
+  R -e 'BiocManager::install("AnnotationDbi", version="3.9")'
+  R -e 'BiocManager::install("limma", version="3.9")'
+  R -e 'BiocManager::install("clusterProfiler", version="3.9")'
+  R -e 'BiocManager::install("DOSE", version="3.9")'
+  R -e 'BiocManager::install("ReactomePA", version="3.9")'
+  R -e 'BiocManager::install("msigdbr", version="3.9")'
+  R -e 'BiocManager::install("BiocGenerics", version="3.9")'
+  R -e 'BiocManager::install("ComplexHeatmap", version="3.9")'
+  R -e 'BiocManager::install("vegan", version="3.9")'
+  R -e 'BiocManager::install("DOSE", version="3.9")'
+  R -e 'BiocManager::install("DOSE", version="3.9")'
+  
   R -e 'devtools::install_github("vari-bbc/bbcRNA")'
   
   # Bioconductor packages
