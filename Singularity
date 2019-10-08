@@ -9,7 +9,6 @@ IncludeCmd: yes
   
   # Bioconductor packages
   R -e 'BiocManager::install("enrichplot", version="3.9")'
-  R -e 'BiocManager::install("", version="3.9")'
   
   R -e 'BiocManager::install("org.Ag.eg.db", version="3.9")'
   R -e 'BiocManager::install("org.At.tair.db", version="3.9")'
