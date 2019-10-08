@@ -5,12 +5,32 @@ IncludeCmd: yes
 %post
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # this will install all necessary R packages and prepare the container
-
-  R -e 'install.packages("cowplot", repos="http://cran.us.r-project.org")'
-
+  R -e 'devtools::install_github("vari-bbc/bbcRNA")'
+  
   # Bioconductor packages
-  R -e 'BiocManager::install("biomaRt", version="3.9")'
-
+  R -e 'BiocManager::install("enrichplot", version="3.9")'
+  R -e 'BiocManager::install("", version="3.9")'
+  
+  R -e 'BiocManager::install("org.Ag.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.At.tair.db", version="3.9")'
+  R -e 'BiocManager::install("org.Bt.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.Ce.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.Cf.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.Dm.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.Dr.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.EcK12.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.EcSakai.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.Gg.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.Hs.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.Mm.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.Mmu.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.Pf.plasmo.db", version="3.9")'
+  R -e 'BiocManager::install("org.Pt.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.Rn.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.Sc.sgd.db", version="3.9")'
+  R -e 'BiocManager::install("org.Ss.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.Xl.eg.db", version="3.9")'
+  
 cat > /singularity <<'EORUNSCRIPT'
 #!/bin/bash
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -19,26 +39,10 @@ cat > /singularity <<'EORUNSCRIPT'
 function usage() {
     cat <<EOF
 
-NAME
-
-
-SYNOPSIS
-rnaseq tool [tool options]
-rnaseq list
-rnaseq help
-
 DESCRIPTION
-Singularity container for edgeR RNAseq analysis
+Singularity container for RNAseq analysis with bbcRNA package
 
 EOF
-}
-
-function tools() {
-    echo "conda: $(which conda)"
-    echo "---------------------------------------------------------------"
-    conda list
-    echo "---------------------------------------------------------------"
-    echo "samtools: $(samtools --version | head -n1)"
 }
 
 export PATH="/opt/conda/bin:/usr/local/bin:/usr/bin:/bin:"
