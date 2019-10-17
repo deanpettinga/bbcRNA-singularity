@@ -4,32 +4,37 @@ IncludeCmd: yes
 
 %post
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# this will install all necessary R packages and prepare the container
-  # install bbcRNA 
-  R -e 'devtools::install_github("vari-bbc/bbcRNA")'
   
+  # ~~~ SETUP R LIBRARY ~~~ #
+  # create new directory for R Library
+  mkdir ~/R_library
+  # setup a new .Rprofile and set library.
+  echo '.libPaths("~/R_library/")' > ~/.Rprofile
+
+  # ~~~ INSTALL R PACKAGES ~~~ #
+  # bbcRNA 
+  R -e 'devtools::install_github("vari-bbc/bbcRNA")'
   # Bioconductor packages
   R -e 'BiocManager::install("enrichplot", version="3.9")'
-  
-  R -e 'BiocManager::install("org.Ag.eg.db", version="3.9")'
-  R -e 'BiocManager::install("org.At.tair.db", version="3.9")'
-  R -e 'BiocManager::install("org.Bt.eg.db", version="3.9")'
-  R -e 'BiocManager::install("org.Ce.eg.db", version="3.9")'
-  R -e 'BiocManager::install("org.Cf.eg.db", version="3.9")'
-  R -e 'BiocManager::install("org.Dm.eg.db", version="3.9")'
-  R -e 'BiocManager::install("org.Dr.eg.db", version="3.9")'
-  R -e 'BiocManager::install("org.EcK12.eg.db", version="3.9")'
-  R -e 'BiocManager::install("org.EcSakai.eg.db", version="3.9")'
-  R -e 'BiocManager::install("org.Gg.eg.db", version="3.9")'
-  R -e 'BiocManager::install("org.Hs.eg.db", version="3.9")'
-  R -e 'BiocManager::install("org.Mm.eg.db", version="3.9")'
-  R -e 'BiocManager::install("org.Mmu.eg.db", version="3.9")'
-  R -e 'BiocManager::install("org.Pf.plasmo.db", version="3.9")'
-  R -e 'BiocManager::install("org.Pt.eg.db", version="3.9")'
-  R -e 'BiocManager::install("org.Rn.eg.db", version="3.9")'
-  R -e 'BiocManager::install("org.Sc.sgd.db", version="3.9")'
-  R -e 'BiocManager::install("org.Ss.eg.db", version="3.9")'
-  R -e 'BiocManager::install("org.Xl.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Ag.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.At.tair.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Bt.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Ce.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Cf.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Dm.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Dr.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.EcK12.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.EcSakai.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Gg.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Hs.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Mm.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Mmu.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Pf.plasmo.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Pt.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Rn.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Sc.sgd.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Ss.eg.db", version="3.9")'
+  #R -e 'BiocManager::install("org.Xl.eg.db", version="3.9")'
   
 cat > /singularity <<'EORUNSCRIPT'
 #!/bin/bash
