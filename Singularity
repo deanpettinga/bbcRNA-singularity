@@ -8,9 +8,16 @@ IncludeCmd: yes
   # ~~~ SETUP R LIBRARY ~~~ #
   # create new directory for R Library
   mkdir ~/R_library
-  # setup a new .Rprofile and set library.
-  echo '.libPaths("~/R_library/")' > ~/.Rprofile
 
+  # setup a new .Rprofile with new library
+  echo '.libPaths("~/R_library/")' > ~/.Rprofile
+  # dedicate CRAN mirror.
+  echo 'local({
+  r <- getOption("repos")
+  r["CRAN"] <- "https://cloud.r-project.org/"
+  options(repos = r)
+  })' >> ~/.Rprofile
+  
   # ~~~ INSTALL R PACKAGES ~~~ #
   # bbcRNA 
   R -e 'devtools::install_github("vari-bbc/bbcRNA")'
@@ -26,8 +33,8 @@ IncludeCmd: yes
   #R -e 'BiocManager::install("org.EcK12.eg.db", version="3.9")'
   #R -e 'BiocManager::install("org.EcSakai.eg.db", version="3.9")'
   #R -e 'BiocManager::install("org.Gg.eg.db", version="3.9")'
-  #R -e 'BiocManager::install("org.Hs.eg.db", version="3.9")'
-  #R -e 'BiocManager::install("org.Mm.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.Hs.eg.db", version="3.9")'
+  R -e 'BiocManager::install("org.Mm.eg.db", version="3.9")'
   #R -e 'BiocManager::install("org.Mmu.eg.db", version="3.9")'
   #R -e 'BiocManager::install("org.Pf.plasmo.db", version="3.9")'
   #R -e 'BiocManager::install("org.Pt.eg.db", version="3.9")'
